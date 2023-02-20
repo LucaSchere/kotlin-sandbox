@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>ch.bfh.ti.p1k.exercises.graphicEditor</groupId>
+  <artifactId>graphicEditor</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>GraphicEditor</name>
+  <url>http://maven.apache.org</url>
+
+
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <kotlin.version>1.5.31</kotlin.version>
+	<kotlin.maven.version>1.5.31</kotlin.maven.version>
+    <kotlin.code.style>official</kotlin.code.style>	
+	<kotlin.compiler.jvmTarget>16</kotlin.compiler.jvmTarget>
+    <maven.compiler.source>16</maven.compiler.source>
+    <maven.compiler.target>16</maven.compiler.target>
+    <java.version>16</java.version>
+	<java.compiler.version>3.8.1</java.compiler.version>
+    <junit.jupiter.version>5.6.0</junit.jupiter.version>
+    <surefire.version>3.0.0-M5</surefire.version>
+	<javafx.controls.version>16-ea+7</javafx.controls.version>
+	<jackson.module.kotlin.version>2.12.5</jackson.module.kotlin.version>
+	<jackson.dataformat.xml.version>2.12.5</jackson.dataformat.xml.version>
+	<kotlinx.coroutines.core.version>1.5.2</kotlinx.coroutines.core.version>
+	<tornadofx.version>1.7.20</tornadofx.version>
+    <site.version>3.9.1</site.version>
+	<dokka.version>1.5.30</dokka.version>
+    <surefire.report.version>3.0.0-M5</surefire.report.version>
+    <jxr.version>3.1.1</jxr.version>
+    <project.info.reports.version>3.1.2</project.info.reports.version>
+	<exec.maven.version>3.0.0</exec.maven.version>
+	<main.class>ch.bfh.ti.p1k.exercises.graphicEditor.GraphicEditorKt</main.class>
+  </properties>
+
+  <dependencies>
+	
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib-jdk8</artifactId> 
+      <version>${kotlin.version}</version>
+    </dependency>
+	
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-test-junit5</artifactId>
+      <version>${kotlin.version}</version>
+      <scope>test</scope>
+    </dependency>
+	
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit.jupiter.version}</version>
+    </dependency>
+	
+	<dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-reflect</artifactId>
+      <version>${kotlin.version}</version>
+    </dependency>
+	
+    <dependency>
+      <groupId>org.jetbrains.kotlinx</groupId>
+      <artifactId>kotlinx-coroutines-core</artifactId>
+      <version>${kotlinx.coroutines.core.version}</version>
+    </dependency>
+	
+    <dependency>
+      <groupId>no.tornado</groupId>
+      <artifactId>tornadofx</artifactId>
+      <version>${tornadofx.version}</version>
+    </dependency>
+	
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-controls</artifactId>
+      <version>${javafx.controls.version}</version>
+      <type>pom</type>
+    </dependency>
+	
+    <dependency>
+      <groupId>com.fasterxml.jackson.module</groupId>
+      <artifactId>jackson-module-kotlin</artifactId>
+      <version>${jackson.module.kotlin.version}</version>
+    </dependency>
+	
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-xml</artifactId>
+      <version>${jackson.dataformat.xml.version}</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+
+    <plugins>
+
+	  <!-- To compile Java and Koltin source code -->
+      <plugin>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-plugin</artifactId>
+        <version>${kotlin.maven.version}</version>
+        <executions>
+          <execution>
+            <id>compile</id>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+            <configuration>
+              <sourceDirs>
+                <sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
+                <sourceDir>${project.basedir}/src/main/java</sourceDir>
+              </sourceDirs>
+            </configuration>
+          </execution>
+          <execution>
+            <id>test-compile</id>
+            <goals> <goal>test-compile</goal> </goals>
+            <configuration>
+              <sourceDirs>
+                <sourceDir>${project.basedir}/src/test/kotlin</sourceDir>
+                <sourceDir>${project.basedir}/src/test/java</sourceDir>
+              </sourceDirs>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+	  
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${java.compiler.version}</version>
+        <executions>
+          <!-- Replacing default-compile as it is treated specially by maven -->
+          <execution>
+            <id>default-compile</id>
+            <phase>none</phase>
+          </execution>
+          <!-- Replacing default-testCompile as it is treated specially by maven -->
+          <execution>
+            <id>default-testCompile</id>
+            <phase>none</phase>
+          </execution>
+          <execution>
+            <id>java-compile</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>java-test-compile</id>
+            <phase>test-compile</phase>
+            <goals>
+              <goal>testCompile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+
+	  <!-- To compile kotlin source code only -->
+	  <!--
+		  <sourceDirectory>src/main/kotlin</sourceDirectory>
+		  <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+		  <plugin>
+		  <groupId>org.jetbrains.kotlin</groupId>
+		  <artifactId>kotlin-maven-plugin</artifactId>
+		  <version>${kotlin.maven.plugin.version}</version>
+		  <configuration>
+		  <jvmTarget>${kotlin.compiler.jvmTarget}</jvmTarget>
+          </configuration>
+          <executions>
+		  <execution>
+		  <id>compile</id>
+		  <phase>compile</phase>
+		  <goals>
+		  <goal>compile</goal>
+		  </goals>
+		  </execution>
+		  <execution>
+		  <id>test-compile</id>
+		  <phase>test-compile</phase>
+		  <goals>
+		  <goal>test-compile</goal>
+		  </goals>
+		  </execution>
+		  </executions>
+		  </plugin>
+	  -->
+	  <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${surefire.version}</version>
+	  </plugin>
+
+	  <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-site-plugin</artifactId>
+		<version>${site.version}</version>
+		<configuration>
+		  <locales>en</locales>
+		  <outputEncoding>UTF-8</outputEncoding>
+		</configuration>
+	  </plugin>
+
+<!--
+	  <plugin>
+		<groupId>org.jetbrains.dokka</groupId>
+		<artifactId>dokka-maven-plugin</artifactId>
+		<version>${dokka.version}</version>
+		<executions>
+          <execution>
+            <phase>pre-site</phase>
+            <goals>
+              <goal>dokka</goal>
+            </goals>
+          </execution>
+		</executions>
+		<configuration>
+          <dokkaPlugins>
+            <plugin>
+              <groupId>org.jetbrains.dokka</groupId>
+              <artifactId>kotlin-as-java-plugin</artifactId>
+              <version>${dokka.version}</version>
+            </plugin>
+          </dokkaPlugins>
+		</configuration>
+	  </plugin>
+-->
+
+	  <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>${exec.maven.version}</version>
+<!--
+		<executions>
+		  <execution>
+            <phase>test</phase>
+            <goals>
+              <goal>java</goal>
+            </goals>
+		  </execution>
+		</executions>
+-->
+		<configuration>
+		  <mainClass>${main.class}</mainClass>
+        </configuration>
+	  </plugin>
+	  
+	</plugins>
+	
+  </build>
+
+  <reporting>
+	<plugins>
+	  <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-project-info-reports-plugin</artifactId>
+		<version>${project.info.reports.version}</version>
+		<configuration>
+		  <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+		  <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+		  <showAvatarImages>false</showAvatarImages>
+		</configuration>
+		<reportSets>
+		  <reportSet>
+			<reports>
+			  <report>dependencies</report>
+			  <report>team</report>
+			  <report>summary</report>
+			</reports>
+		  </reportSet>
+		</reportSets>
+	  </plugin>
+
+	  <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-surefire-report-plugin</artifactId>
+		<version>${surefire.report.version}</version>
+		<configuration>
+		  <showSuccess>false</showSuccess>
+		</configuration>
+	  </plugin>
+
+	  <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-jxr-plugin</artifactId>
+		<version>${jxr.version}</version>
+	  </plugin>
+	</plugins>
+  </reporting>
+
+</project>
+  

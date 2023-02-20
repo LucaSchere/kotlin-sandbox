@@ -1,0 +1,16 @@
+Exercise
+========
+
+Uses markdown for the documentation.
+
+This directory contains:
+
+  1. all the sources (kotlin, tests)
+  2. all the sources for the documentation (see src/site and markdown directories)
+  3. pom.xml, Project Object Model
+  4. this README file
+  5. .gitignore, the list of files that should not be used committed by git.
+     (for IntelliJ *.iml and .idea are not commited)
+
+--
+Olivier Biberstein

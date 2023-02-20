@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<project name="" xmlns="http://maven.apache.org/DECORATION/1.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+<bannerLeft>
+    <name>BFH</name>
+    <src>images/logo-bfh.png</src>
+    <href>http://www.ti.bfh.ch</href>
+	</bannerLeft>
+  <bannerRight>
+    <name>P1K BTI1002</name>
+  </bannerRight>
+
+<version position="right" />
+  <body>
+
+    <menu name="Documentation">
+      <item name="Exercise" href="index.html" />
+      <!--
+          To add a menu item that links to a html page, provide
+          an entry of the form:
+          <item name="AName" href="path_from_markdown_dir_to_file.html" />
+          
+          To add a menu item that links to a PDF file, provide
+          an entry of the form:
+          <item name="AName" href="path_from_resources/pdf_dir_to_file.pdf" />
+      -->
+      
+    </menu>
+    <menu name="Resources">
+      <item name="Markdown in 60 seconds" href="http://commonmark.org/help "target="_blank"  />
+    </menu>
+
+    <menu ref="reports" />
+
+  </body>
+
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+	<version>1.8</version>
+  </skin>
+
+</project>
